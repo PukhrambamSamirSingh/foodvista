@@ -38,7 +38,7 @@ const App = () => {
                 <UserProvider>
                     <div className="flex flex-col bg-gray-900 text-white">
                         <Navbar />
-                        <div className="p-4 sm:px-16 xl:px-48" style={{
+                        <div className="p-2 xxs:p-4 sm:px-16 xl:px-48" style={{
                             minHeight: "calc(100vh - 60px)"
                         }}>
                             <Outlet />
