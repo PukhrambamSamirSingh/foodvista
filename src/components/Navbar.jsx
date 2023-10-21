@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { PiShoppingCartSimpleBold } from "react-icons/pi"
 import { useContext, useEffect, useState } from "react"
 import { FaHamburger } from "react-icons/fa"
@@ -7,15 +7,28 @@ import { BsPlusCircle } from "react-icons/bs"
 import { UserContext } from "../context/UserContext"
 import { useDispatch, useSelector } from "react-redux"
 import { getCartItemsAsync } from "../slices/cartSlice"
+import { apiRequests } from "../utils/apiRequests"
 
 const Navbar = () => {
     const [toggle, setToggle] = useState(false)
     const { user } = useContext(UserContext)
+    const navigate = useNavigate()
     const items = useSelector(state => state.cart.items)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getCartItemsAsync())
     }, [dispatch])
+    const logout = async () => {
+        try {
+            const res = await apiRequests.post("/auth/logout")
+            if (res.status === 200) {
+                localStorage.removeItem("User")
+                navigate("/login")
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div className="w-full flex items-center justify-between bg-orange-500 text-white px-4 py-2 sm:px-16 xl:px-48 sticky top-0 z-10">
@@ -92,6 +105,9 @@ const Navbar = () => {
                                     </Link>
                                     {!user && (
                                         <Link to="/login" className="px-6 py-2 rounded-md border block sm:hidden">Sign In</Link>
+                                    )}
+                                    {user && (
+                                        <button onClick={logout} className="px-6 py-2 rounded-md border block sm:hidden">Logout</button>
                                     )}
                                 </div>
                             </div>
