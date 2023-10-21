@@ -56,7 +56,7 @@ const Register = () => {
                         <label htmlFor="password">PASSWORD</label>
                         <input className="outline-none border border-gray-500 rounded-md bg-transparent p-2" type="password" name="password" id="password" placeholder="Enter your password" minLength={5} required onChange={handleChange} />
                     </div>
-                    <button type="submit" className="bg-green-500 p-2 text-white flex justify-center items-center rounded-md">{registering ? <img className="w-6 h-6 object-contain" src="https://i.gifer.com/ZZ5H.gif" alt="" /> : "Login"}</button>
+                    <button type="submit" className="bg-orange-500 p-2 text-white flex justify-center items-center rounded-md">{registering ? <img className="w-6 h-6 object-contain" src="https://i.gifer.com/ZZ5H.gif" alt="" /> : "Sign Up"}</button>
                     <div className="flex justify-center">
                         <span>OR</span>
                     </div>
