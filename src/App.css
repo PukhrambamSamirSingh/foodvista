@@ -1,0 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+.item_background {
+    background: rgb(235, 172, 53);
+    background: linear-gradient(127deg, rgba(235, 172, 53, 1) 49%, rgba(255, 255, 255, 1) 49%);
+}
