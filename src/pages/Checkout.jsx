@@ -159,7 +159,7 @@ const Checkout = () => {
                     <input name="state" id="state" value={state.state} className="outline-none border border-gray-500 rounded-xl p-2 bg-transparent" type="text" placeholder="Enter your state name" onChange={handleChange} />
                 </div>
                 <div className="w-full md:w-1/2 mt-1">
-                    <button className="bg-orange-500 p-2 text-white flex justify-center items-center rounded-md">{proceeding ? <img className="w-6 h-6 object-contain" src="https://i.gifer.com/ZZ5H.gif" alt="" /> : "Proceed"}</button>
+                    <button className="bg-orange-500 px-6 py-2 text-white flex justify-center items-center rounded-md">{proceeding ? <img className="w-6 h-6 object-contain" src="https://i.gifer.com/ZZ5H.gif" alt="" /> : "Proceed"}</button>
                 </div>
             </form>
         </div>
