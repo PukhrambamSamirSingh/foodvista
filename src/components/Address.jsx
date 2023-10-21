@@ -33,7 +33,7 @@ const Address = ({ setToggle }) => {
     }
 
     return (
-        <div className="w-full min-h-[260px] animate__animated animate__backInUp animate__faster fixed -ml-2 xs:-ml-4 p-4 bottom-[-1px] bg-gray-950 z-10 flex flex-col gap-2 sm:hidden">
+        <div className="w-full min-h-[260px] animate__animated animate__backInUp animate__faster fixed -ml-2 xxs:-ml-4 p-4 bottom-[-1px] bg-gray-950 z-10 flex flex-col gap-2 sm:hidden">
             <div className="flex justify-between items-center">
                 <div className="flex gap-2 font-bold text-2xl">
                     <h1>Your</h1>

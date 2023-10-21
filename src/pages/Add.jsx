@@ -200,7 +200,7 @@ const Add = () => {
                             ))}
                         </div>
                     </div>
-                    <button onClick={handleSubmit} className="bg-green-500 p-2 text-white flex justify-center items-center rounded-md">{loading ? <img className="w-6 h-6 object-contain" src="https://i.gifer.com/ZZ5H.gif" alt="" /> : "Create"}</button>
+                    <button onClick={handleSubmit} className="bg-orange-500 p-2 text-white flex justify-center items-center rounded-md">{loading ? <img className="w-6 h-6 object-contain" src="https://i.gifer.com/ZZ5H.gif" alt="" /> : "Create"}</button>
                 </div>
             </div>
         </div>
