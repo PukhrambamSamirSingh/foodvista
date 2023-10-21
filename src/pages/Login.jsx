@@ -56,7 +56,7 @@ const Login = () => {
                         </div>
                         <input className="outline-none border border-gray-500 rounded-md bg-transparent p-2" type="password" name="password" id="password" placeholder="Enter your password" onChange={handleChange} required />
                     </div>
-                    <button className="bg-orange-500 p-2 text-white rounded-md">{signing ? "Signing..." : "Sign In"}</button>
+                    <button className="bg-green-500 p-2 text-white flex justify-center items-center rounded-md">{signing ? <img className="w-6 h-6 object-contain" src="https://i.gifer.com/ZZ5H.gif" alt="" /> : "Login"}</button>
                     <div className="flex justify-center">
                         <span>OR</span>
                     </div>

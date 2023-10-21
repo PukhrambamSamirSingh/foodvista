@@ -1,4 +1,4 @@
-import { useReducer } from "react"
+import { useReducer, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { apiRequests } from "../utils/apiRequests"
 import { INITIAL_STATE, registrationReducer } from "../reducer/registrationReducer"
@@ -7,9 +7,11 @@ import OAuth from "../components/OAuth"
 const Register = () => {
     const [state, dispatch] = useReducer(registrationReducer, INITIAL_STATE)
     const navigate = useNavigate()
+    const [registering, setRegistering] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setRegistering(true)
         try {
             const res = await apiRequests.post("/auth/create", {
                 ...state
@@ -18,7 +20,9 @@ const Register = () => {
             if (res.status === 200) {
                 navigate("/")
             }
+            setRegistering(false)
         } catch (error) {
+            setRegistering(false)
             dispatch({ type: "SET_ERROR", payload: { error: error.message } })
         }
     }
@@ -52,7 +56,7 @@ const Register = () => {
                         <label htmlFor="password">PASSWORD</label>
                         <input className="outline-none border border-gray-500 rounded-md bg-transparent p-2" type="password" name="password" id="password" placeholder="Enter your password" minLength={5} required onChange={handleChange} />
                     </div>
-                    <button type="submit" className="bg-orange-500 p-2 text-white rounded-md">Sign Up</button>
+                    <button type="submit" className="bg-green-500 p-2 text-white flex justify-center items-center rounded-md">{registering ? <img className="w-6 h-6 object-contain" src="https://i.gifer.com/ZZ5H.gif" alt="" /> : "Login"}</button>
                     <div className="flex justify-center">
                         <span>OR</span>
                     </div>

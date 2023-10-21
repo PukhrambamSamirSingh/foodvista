@@ -54,7 +54,7 @@ const Forgot = () => {
                         <label htmlFor="password">RESET PASSWORD</label>
                         <input className="outline-none border border-gray-500 rounded-md bg-transparent p-2" type="password" name="password" id="password" placeholder="Enter strong password" onChange={handleChange} required minLength={6} />
                     </div>
-                    <button className="bg-orange-500 p-2 text-white uppercase rounded-md">{resetting ? "Resetting..." : "Reset"}</button>
+                    <button className="bg-green-500 p-2 text-white flex justify-center items-center rounded-md">{resetting ? <img className="w-6 h-6 object-contain" src="https://i.gifer.com/ZZ5H.gif" alt="" /> : "Reset"}</button>
                 </form>
             </div>
         </div>

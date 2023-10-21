@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { apiRequests } from "../utils/apiRequests"
+import { useQuery } from "@tanstack/react-query"
 
 const Confirm = () => {
-    const [address, setAddress] = useState(null)
     const { items } = useSelector(state => state.cart)
     const delivery = 30
     const calculateTotalPrice = () => {
@@ -26,17 +25,13 @@ const Confirm = () => {
         )
     }
     const { totalPrice, totalQuantity, discountPrice } = calculateTotalPrice()
-    useEffect(() => {
-        try {
-            const getAddress = async () => {
-                const res = await apiRequests.get("/address/get")
-                setAddress(res.data)
-            }
-            getAddress()
-        } catch (error) {
-            throw new Error(error)
+    const { isLoading, data, error } = useQuery({
+        queryKey: ["address"],
+        queryFn: async () => {
+            const { data } = await apiRequests.get("/address/get")
+            return data
         }
-    }, [])
+    })
 
     return (
         <div className="w-full h-full flex flex-col md:flex-row gap-8 pt-2 sm:pt-6 pb-6">
@@ -46,16 +41,16 @@ const Confirm = () => {
                         <h1>Shipping</h1>
                         <h1 className="text-orange-500">Info</h1>
                     </div>
-                    {address && (
+                    {isLoading ? <img className="w-8 h-8 object-contain" src="https://i.gifer.com/ZZ5H.gif" alt="" /> : error ? "Something went wrong" : data && (
                         <div className="p-4 flex flex-col gap-2 border border-gray-500 rounded-md">
-                            <h2 className="text-lg font-semibold">{address.userId.name}</h2>
-                            <span>Phone no.: {address.phone}</span>
-                            <span>House no. {address.houseNumber}</span>
-                            <span>{address.street}</span>
+                            <h2 className="text-lg font-semibold">{data.userId.name}</h2>
+                            <span>Phone no.: {data.phone}</span>
+                            <span>House no. {data.houseNumber}</span>
+                            <span>{data.street}</span>
                             <div className="flex gap-1">
-                                <span>{address.city},</span>
-                                <span>{address.state},</span>
-                                <span>{address.pinCode}</span>
+                                <span>{data.city},</span>
+                                <span>{data.state},</span>
+                                <span>{data.pinCode}</span>
                             </div>
                             <span>India</span>
                             <Link to="/checkout" className="w-full border border-gray-500 rounded-md p-2 flex justify-center">Edit Address</Link>
